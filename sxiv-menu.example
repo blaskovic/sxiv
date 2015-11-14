@@ -1,0 +1,4 @@
+true
+mkdir -p /home/bblaskov/tmp/$(date "+%Y-%m-%d_%H:%M"); cp IMAGE_HERE /home/bblaskov/tmp/$(date "+%Y-%m-%d_%H:%M")
+feh --bg-fill IMAGE_HERE
+rm IMAGE_HERE

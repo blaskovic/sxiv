@@ -1,0 +1,23 @@
+#!/bin/bash
+
+FONT="-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*"
+DMENU="dmenu -fn $FONT -l 15"
+
+tmp=`mktemp`
+
+echo "$1 $2 $3" > /tmp/kek
+sxiv -o "$@" > $tmp
+
+words=$(wc -w $tmp | awk '{print $1}')
+test $words -eq 0 && exit 0
+
+chosen=$($DMENU < $HOME/.sxiv-menu)
+
+while read file
+do
+    cmd=$(echo "$chosen" | sed "s,IMAGE_HERE,$file,g")
+    echo "$cmd"
+    eval $cmd
+done < $tmp
+
+rm $tmp
