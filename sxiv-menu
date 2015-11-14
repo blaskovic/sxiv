@@ -6,7 +6,7 @@ DMENU="dmenu -fn $FONT -l 15"
 tmp=`mktemp`
 
 echo "$1 $2 $3" > /tmp/kek
-sxiv -o "$@" > $tmp
+sxiv.orig -o "$@" > $tmp
 
 words=$(wc -w $tmp | awk '{print $1}')
 test $words -eq 0 && exit 0
